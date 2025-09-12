@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0b0b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>ミニ四駆 コマ送りビデオ</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <meta name="apple-mobile-web-app-title" content="M4WD Frame" />
+    <!-- If you add a PNG apple-touch-icon later, reference it here. -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="stage" class="stage" aria-label="動画表示エリア">
+        <video id="video"
+               playsinline webkit-playsinline
+               preload="metadata"
+               muted
+               tabindex="-1"
+               aria-label="動画"
+        ></video>
+
+        <!-- Overlay controls (minimal) -->
+        <div class="overlay top">
+          <button id="openBtn" class="btn" title="動画を開く" aria-label="動画を開く">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M10 4H4c-1.1 0-2 .9-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-6h-2v6H4V6h6V4zm3 0V2h7v7h-2V6.41l-8.3 8.29-1.4-1.41L16.59 5H13z"/></svg>
+          </button>
+          <input id="fileInput" type="file" accept="video/*" hidden />
+        </div>
+
+        <div id="hud" class="hud" aria-live="polite"></div>
+
+        <div class="overlay bottom">
+          <div class="controls">
+            <button id="prevFrameBtn" class="btn" title="前のコマ" aria-label="前のコマ">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M11 18V6l-8.5 6L11 18zM13 6h2v12h-2z"/></svg>
+            </button>
+            <button id="playPauseBtn" class="btn" title="再生/一時停止" aria-label="再生/一時停止">
+              <svg id="iconPlay" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              <svg id="iconPause" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="display:none"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+            <button id="nextFrameBtn" class="btn" title="次のコマ" aria-label="次のコマ">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M13 6v12l8.5-6L13 6zM11 18H9V6h2z"/></svg>
+            </button>
+
+            <div class="time">
+              <span id="currentTime">00:00.00</span>
+              <span>/</span>
+              <span id="duration">00:00.00</span>
+            </div>
+          </div>
+          <input id="seek" class="seek" type="range" min="0" max="0" step="0.001" value="0" aria-label="シークバー" />
+        </div>
+
+        <div id="hint" class="hint">
+          ピンチで拡大・縮小、1本指で移動、ダブルタップでリセット
+        </div>
+
+        <div id="spinner" class="spinner" aria-hidden="true">
+          <div class="loader"></div>
+          <div>解析中...</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+  </html>
+

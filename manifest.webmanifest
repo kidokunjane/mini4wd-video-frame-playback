@@ -1,0 +1,14 @@
+{
+  "name": "ミニ四駆 コマ送りビデオ",
+  "short_name": "M4WD Frame",
+  "description": "ミニ四駆の動画をコマ送りで確認できるPWA",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#0b0b0b",
+  "lang": "ja",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
+
