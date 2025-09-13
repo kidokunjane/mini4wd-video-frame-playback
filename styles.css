@@ -107,15 +107,7 @@ video {
   background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
 
-.hint {
-  position: absolute;
-  bottom: calc(60px + var(--safe-b));
-  left: 50%; transform: translateX(-50%);
-  background: rgba(0,0,0,0.35);
-  color: #ddd; font-size: 12px;
-  padding: 6px 10px; border-radius: 999px;
-  pointer-events: none;
-}
+/* hint removed */
 
 #hud {
   position: absolute; top: calc(10px + var(--safe-t)); right: 8px;
