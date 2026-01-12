@@ -20,6 +20,29 @@ const hud = $('#hud');
 const spinner = $('#spinner');
 const iconPlay = $('#iconPlay');
 const iconPause = $('#iconPause');
+const installBtn = $('#installBtn');
+
+let installPromptEvent = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  installPromptEvent = e;
+  if (installBtn) installBtn.hidden = false;
+});
+
+if (installBtn) {
+  installBtn.addEventListener('click', async () => {
+    if (!installPromptEvent) return;
+    installPromptEvent.prompt();
+    await installPromptEvent.userChoice;
+    installPromptEvent = null;
+    installBtn.hidden = true;
+  });
+}
+
+window.addEventListener('appinstalled', () => {
+  installPromptEvent = null;
+  if (installBtn) installBtn.hidden = true;
+});
 
 let objectUrl = null;
 let rafId = 0;
