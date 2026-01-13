@@ -1,22 +1,23 @@
 :root {
-  --bg: #000;
-  --fg: #f5f5f5;
-  --muted: #c8c8c8;
-  --accent: #18a0fb;
-  --glass: rgba(0,0,0,0.45);
-  --glass-strong: rgba(0,0,0,0.65);
+  --bg: #0b0f1a;
+  --fg: #f8fafc;
+  --muted: #cbd5e1;
+  --accent: #007aff;
+  --glass: rgba(11, 15, 26, 0.6);
+  --glass-strong: rgba(11, 15, 26, 0.78);
   --btn-size: 36px;
   --safe-b: env(safe-area-inset-bottom, 0px);
   --safe-t: env(safe-area-inset-top, 0px);
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html, body { height: 100%; }
 body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-family: system-ui, -apple-system, "Noto Sans JP", Segoe UI, Roboto, Helvetica, Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
@@ -42,7 +43,7 @@ video {
   /* transform via CSS variables set from JS */
   --sx: 1; --tx: 0px; --ty: 0px;
   transform: translate(var(--tx), var(--ty)) scale(var(--sx));
-  background: #000;
+  background: var(--bg);
 }
 
 .overlay {
@@ -52,7 +53,14 @@ video {
   align-items: center;
   pointer-events: none; /* container ignores events; children re-enable */
 }
-.overlay.top { top: 8px; padding-top: var(--safe-t); justify-content: flex-start; }
+.overlay.top {
+  top: 0;
+  padding: calc(8px + var(--safe-t)) 12px 8px;
+  justify-content: flex-start;
+  background: linear-gradient(180deg, var(--glass-strong), rgba(11, 15, 26, 0));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+}
 .overlay.bottom { bottom: 0; padding-bottom: calc(8px + var(--safe-b)); flex-direction: column; gap: 6px; }
 
 .controls {
@@ -70,10 +78,10 @@ video {
   pointer-events: auto;
   width: var(--btn-size);
   height: var(--btn-size);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
   color: #fff;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.12);
   display: grid; place-items: center;
   box-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
@@ -86,13 +94,14 @@ video {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.02em;
+  border-radius: 999px;
 }
 
 .time {
   font-variant-numeric: tabular-nums;
   color: var(--muted);
   display: inline-flex; gap: 4px;
-  background: rgba(0,0,0,0.25);
+  background: rgba(11, 15, 26, 0.5);
   padding: 3px 6px; border-radius: 6px;
 }
 
@@ -119,14 +128,14 @@ video {
 
 #hud {
   position: absolute; top: calc(10px + var(--safe-t)); right: 8px;
-  background: rgba(0,0,0,0.35);
+  background: rgba(11, 15, 26, 0.6);
   color: #fff; font-size: 12px; padding: 4px 8px; border-radius: 6px;
   pointer-events: none;
 }
 
 .spinner {
   position: absolute; inset: 0; display: none; place-content: center; place-items: center; gap: 12px;
-  background: rgba(0,0,0,0.35);
+  background: rgba(11, 15, 26, 0.6);
 }
 .spinner .loader {
   width: 24px; height: 24px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.2); border-top-color: #fff; animation: spin 1s linear infinite;
